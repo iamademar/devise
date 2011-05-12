@@ -1,18 +1,34 @@
-<h2>Sign up</h2>
+	<div id="registration" class="reglog sign_in">
+		<h1>Sign Up</h1>
+		<h4>Already have an account?  <a href="/users/sign_in">Login Here</a></h4>
+		<hr />
+		<div id="register_container" class="form_container span-8 right">
+			<p>No Facebook? Fill out the fields below:</p>
+			<%= form_for(Profile.new) do |f| %>
+				<div>
+					<label for="firstName">First Name</label>
+					<%= f.text_field :first_name %>
+				</div>
+				
+				<div>
+					<label for="lastName">Last Name</label>
+                                        <%= f.text_field :last_name %>
+				</div>
+                                <%= fields_for(User.new) do |u| %>
+				   <div>
+					<label for="email">E-Mail</label>
+                                        <%= u.text_field :email %>
+				   </div>
 
-<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
-  <%= devise_error_messages! %>
-
-  <p><%= f.label :email %><br />
-  <%= f.email_field :email %></p>
-
-  <p><%= f.label :password %><br />
-  <%= f.password_field :password %></p>
-
-  <p><%= f.label :password_confirmation %><br />
-  <%= f.password_field :password_confirmation %></p>
-
-  <p><%= f.submit "Sign up" %></p>
-<% end %>
-
-<%= render :partial => "devise/shared/links" %>
+				   <div>
+					<label for="password">Password</label>
+                                        <%= u.password_field :password %>
+				   </div>
+                                <% end %>
+				<div align="center">
+                                  <%= f.submit :Register %>
+				</div>
+			<% end %>
+				
+		</div>
+	</div>
