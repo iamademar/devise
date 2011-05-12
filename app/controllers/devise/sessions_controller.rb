@@ -6,7 +6,11 @@ class Devise::SessionsController < ApplicationController
   def new
     resource = build_resource
     clean_up_passwords(resource)
-    respond_with_navigational(resource, stub_options(resource)){ render_with_scope :new }
+    if Devise.omniauth_configs.any?
+      respond_with_navigational(resource, stub_options(resource)){ render_with_scope :new_with_omniauth }
+    else
+      respond_with_navigational(resource, stub_options(resource)){ render_with_scope :new }
+    end
   end
 
   # POST /resource/sign_in

@@ -1,0 +1,32 @@
+	<div id="login" class="reglog sign_in with_fb">
+		<h1>Login</h1>
+		<h4>Don't have an account?  <a href="/users/sign_up">Sign Up Here</a></h4>
+		<hr />
+		<div class="fb_container span-8 left">
+			<h2>Have a Facebook account?</h2>
+			<p>
+                          <%= content_tag(:a, content_tag(:span, "Sign Up with Facebook", :class => "fb_button_text"), :href => user_omniauth_authorize_path(:facebook), :class => "fb_button fb_button_medium") %>
+			</p>
+			<p>We keep your information safe and will never post to facebook without your permission</p>
+		</div>
+		<div class="or_box span-1 left">OR</div>
+		<div id="login_container" class="form_container span-8">
+			<%= form_for User.new, :url => user_session_path do |n| %>
+ 				<div>
+					<label for="email">E-Mail</label>
+                                        <%= n.text_field :email %>
+				</div>
+
+				<div>
+					<label for="password">Password</label>
+					<%= n.password_field :password %>
+				</div>
+				
+				<div align="center">
+                                  <%= n.submit :Login %>
+                                  <a href="/users/password/new">Forgot your password?</a>
+				</div>
+			<% end -%>
+				
+		</div>
+	</div>

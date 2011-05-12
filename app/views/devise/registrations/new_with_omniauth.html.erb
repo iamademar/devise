@@ -1,8 +1,15 @@
-	<div id="registration" class="reglog sign_in">
+	<div id="registration" class="reglog sign_in with_fb">
 		<h1>Sign Up</h1>
 		<h4>Already have an account?  <a href="/users/sign_in">Login Here</a></h4>
 		<hr />
+		<div class="fb_container span-8 left">
+			<h2>Have a Facebook account?</h2>
+                        <%= content_tag(:a, content_tag(:span, "Sign Up with Facebook", :class => "fb_button_text"), :href => user_omniauth_authorize_path(:facebook), :class => "fb_button fb_button_medium") %>
+			<p>We keep your information safe and will never post to facebook without your permission</p>
+		</div>
+		<div class="or_box left">OR</div>
 		<div id="register_container" class="form_container span-8 right">
+			<p>No Facebook? Fill out the fields below:</p>
                         <% @profile = Igniter::Profile.new %>
 			<%= form_for @profile, :url => igniter_profiles_path(@profile) do |f| %>
 				<div>

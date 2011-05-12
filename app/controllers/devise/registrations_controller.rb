@@ -5,8 +5,12 @@ class Devise::RegistrationsController < ApplicationController
 
   # GET /resource/sign_up
   def new
-    resource = build_resource({})
-    respond_with_navigational(resource){ render_with_scope :new }
+t    resource = build_resource({})
+    if Devise.omniauth_configs.any?
+      respond_with_navigational(resource){ render_with_scope :new_with_omniauth }
+    else
+      respond_with_navigational(resource){ render_with_scope :new }
+    end
   end
 
   # POST /resource

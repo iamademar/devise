@@ -26,7 +26,7 @@ class Devise::ConfirmationsController < ApplicationController
     if resource.errors.empty?
       set_flash_message(:notice, :confirmed) if is_navigational_format?
       sign_in(resource_name, resource)
-      profile = Igniter::Profile.find(:first, :conditions => { :user_id => resouce.id })
+      profile = Igniter::Profile.find(:first, :conditions => { :user_id => resource.id })
       redirect_to edit_igniter_profile_path(profile)
       # respond_with_navigational(resource){ redirect_to redirect_location(resource_name, resource) }
     else
