@@ -10,8 +10,8 @@ class Devise::PasswordsController < ApplicationController
 
   # POST /resource/password
   def create
-    self.resource = resource_class.send_reset_password_instructions(params[resource_name])
-
+    resource = User.find_by_email(params[resource_name][:email])
+    resource = resource_class.send_reset_password_instructions(params[resource_name])
     if resource.errors.empty?
       set_flash_message(:notice, :send_instructions) if is_navigational_format?
       respond_with resource, :location => new_session_path(resource_name)
