@@ -8,12 +8,13 @@ module Devise
            "configuration plus a migration file and devise routes."
 
       hook_for :orm
-
+=begin
       def add_devise_routes
         devise_route  = "devise_for :#{plural_name}"
         devise_route += %Q(, :class_name => "#{class_name}") if class_name.include?("::")
         route devise_route
       end
+=end
     end
   end
 end
